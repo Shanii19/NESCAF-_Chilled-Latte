@@ -73,6 +73,7 @@ canvas {
 @media (max-width: 768px) {
     .scroll-title { font-size: 12vw; }
     .scroll-subtitle { font-size: 4vw; padding: 0 20px; }
+    .animation-section { height: 1200vh; }
 }
 
 .page-content {
