@@ -1,0 +1,97 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+body {
+    background-color: #FFF8E1; /* Cream background */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Animation Section */
+.animation-section {
+    height: 500vh;
+    position: relative;
+    background-color: #050505;
+    color: #ffffff;
+}
+
+.sticky-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Loader */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #050505;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: opacity 0.5s ease;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background: #222;
+    border-radius: 2px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.1s;
+}
+
+@media (max-width: 768px) {
+    .scroll-title { font-size: 12vw; }
+    .scroll-subtitle { font-size: 4vw; padding: 0 20px; }
+}
+
+.page-content {
+    position: relative;
+    z-index: 10;
+    background-color: #FFF8E1;
+}
+
+/* Magnetic Button */
+.magnetic-btn {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Mobile Menu Overlay */
+#mobileMenu {
+    clip-path: circle(0% at top right);
+    transition: clip-path 0.5s ease-in-out;
+}
+#mobileMenu.open {
+    clip-path: circle(150% at top right);
+}
