@@ -34,8 +34,14 @@ const preloadImages = () => {
 
 const renderInitialFrame = () => {
     if (images[0] && images[0].complete) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        if (canvas) {
+            const parent = canvas.parentElement;
+            if (parent) {
+                const rect = parent.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+        }
         drawImageProp(context, images[0], 0, 0, canvas.width, canvas.height);
     } else {
         setTimeout(renderInitialFrame, 50);
@@ -103,13 +109,22 @@ function updateCanvasFromScroll() {
     }
 }
 
+let lastWidth = window.innerWidth;
 window.addEventListener('resize', () => {
-    if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        updateCanvasFromScroll();
+    if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        if (canvas) {
+            const parent = canvas.parentElement;
+            if (parent) {
+                const rect = parent.getBoundingClientRect();
+                canvas.width = rect.width || window.innerWidth;
+                canvas.height = rect.height || window.innerHeight;
+            }
+            updateCanvasFromScroll();
+        }
     }
 });
+window.addEventListener('scroll', updateCanvasFromScroll, { passive: true });
 
 // Initialize Smooth Scrolling (Lenis)
 const lenis = new Lenis({
